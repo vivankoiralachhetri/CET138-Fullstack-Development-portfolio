@@ -1,0 +1,372 @@
+/* ==========================================
+   MOONLIT CAFÉ - Responsive Styles
+   ========================================== */
+
+/* ==========================================
+   LARGE DESKTOPS (1200px and up)
+   ========================================== */
+@media (min-width: 1200px) {
+    .hero-section .display-1 {
+        font-size: 5rem;
+    }
+}
+
+/* ==========================================
+   DESKTOPS (992px to 1199px)
+   ========================================== */
+@media (max-width: 1199px) {
+    .hero-section .display-1 {
+        font-size: 3.8rem;
+    }
+}
+
+/* ==========================================
+   TABLETS (768px to 991px)
+   ========================================== */
+@media (max-width: 991px) {
+    .hero-section {
+        text-align: center;
+        min-height: 80vh;
+    }
+    
+    .hero-section .display-1 {
+        font-size: 3.2rem;
+    }
+    
+    .full-stack-card {
+        margin-top: 2rem;
+    }
+    
+    .full-stack-card .row .col-md-4 {
+        margin-bottom: 0.5rem;
+    }
+    
+    .floating-badge {
+        display: none;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .stat-box {
+        padding: 1rem !important;
+    }
+    
+    .stat-box h3 {
+        font-size: 1.5rem;
+    }
+}
+
+/* ==========================================
+   SMALL TABLETS & LARGE PHONES (576px to 767px)
+   ========================================== */
+@media (max-width: 767px) {
+    body {
+        padding-top: 66px;
+    }
+    
+    .hero-section {
+        min-height: 70vh;
+        padding-top: 60px;
+    }
+    
+    .hero-section .display-1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-section .lead {
+        font-size: 1rem;
+    }
+    
+    .btn-gold,
+    .btn-outline-light {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .tech-card .card-img-wrapper {
+        height: 150px;
+    }
+    
+    .menu-card .card-img-top {
+        height: 160px;
+    }
+    
+    .stat-box h3 {
+        font-size: 1.2rem;
+    }
+    
+    .stat-box small {
+        font-size: 0.7rem;
+    }
+    
+    /* Stack stat boxes */
+    .stat-box {
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Form adjustments */
+    .form-floating .form-control {
+        min-height: 50px;
+        font-size: 0.9rem;
+    }
+    
+    /* Offcanvas adjustments */
+    .offcanvas {
+        width: 85% !important;
+    }
+    
+    /* Filter buttons wrap */
+    .btn-filter {
+        font-size: 0.8rem;
+        padding: 5px 14px;
+    }
+}
+
+/* ==========================================
+   PHONES (less than 576px)
+   ========================================== */
+@media (max-width: 575px) {
+    body {
+        padding-top: 60px;
+    }
+    
+    .hero-section {
+        min-height: 60vh;
+        padding-top: 50px;
+    }
+    
+    .hero-section .display-1 {
+        font-size: 2rem;
+    }
+    
+    .hero-section .btn {
+        width: 100%;
+        margin: 5px 0;
+    }
+    
+    .hero-section .btn-gold {
+        margin-bottom: 10px;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .tech-card .card-img-wrapper {
+        height: 120px;
+    }
+    
+    .menu-card .card-img-top {
+        height: 140px;
+    }
+    
+    .menu-card .price {
+        font-size: 1rem;
+    }
+    
+    .tech-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+        top: -15px;
+        right: 15px;
+    }
+    
+    .offcanvas {
+        width: 95% !important;
+    }
+    
+    .offcanvas-header {
+        padding: 0.75rem 1rem;
+    }
+    
+    .btn-filter {
+        font-size: 0.7rem;
+        padding: 4px 10px;
+    }
+    
+    /* Contact section */
+    #contact .card {
+        padding: 1rem !important;
+    }
+    
+    #contact .form-floating .form-control {
+        min-height: 44px;
+        font-size: 0.85rem;
+    }
+    
+    /* Footer */
+    footer .row {
+        text-align: center;
+    }
+    
+    footer .col-md-6 {
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* ==========================================
+   VERY SMALL PHONES (less than 400px)
+   ========================================== */
+@media (max-width: 400px) {
+    .hero-section .display-1 {
+        font-size: 1.6rem;
+    }
+    
+    .navbar-brand {
+        font-size: 1.1rem !important;
+    }
+    
+    .btn-gold {
+        font-size: 0.8rem;
+        padding: 8px 16px;
+    }
+    
+    .btn-filter {
+        font-size: 0.65rem;
+        padding: 3px 8px;
+    }
+}
+
+/* ==========================================
+   PRINT STYLES
+   ========================================== */
+@media print {
+    .custom-navbar,
+    .hero-section,
+    .btn,
+    .add-to-cart,
+    #darkModeToggle,
+    #cartToggle,
+    #shoppingCart,
+    .floating-badge,
+    footer {
+        display: none !important;
+    }
+    
+    body {
+        padding-top: 0 !important;
+        background: white !important;
+        color: black !important;
+    }
+    
+    .section-title::after {
+        background: black !important;
+    }
+    
+    .card {
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+    }
+}
+/* ==========================================
+   HERO RESPONSIVE - MOONLIT DESIGN
+   ========================================== */
+
+@media (max-width: 991px) {
+    .hero-moon-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+    
+    .hero-quote {
+        font-size: 1.2rem;
+        padding: 0 15px;
+    }
+    
+    .quote-decoration {
+        font-size: 1.8rem;
+    }
+    
+    .quote-decoration.quote-left {
+        left: -5px;
+    }
+    
+    .quote-decoration.quote-right {
+        right: -5px;
+    }
+    
+    .hero-divider {
+        width: 100%;
+    }
+    
+    .moon-phase {
+        display: none;
+    }
+}
+
+@media (max-width: 767px) {
+    .hero-section {
+        background-attachment: scroll;
+        min-height: 80vh;
+    }
+    
+    .hero-moon-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    
+    .hero-quote {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+    
+    .quote-decoration {
+        font-size: 1.2rem;
+    }
+    
+    .star {
+        display: none;
+    }
+    
+    .scroll-indicator {
+        bottom: 15px;
+    }
+    
+    .scroll-indicator span {
+        font-size: 0.6rem;
+    }
+    
+    .hero-divider {
+        gap: 15px;
+        margin: 15px 0 20px 0;
+    }
+}
+
+@media (max-width: 575px) {
+    .hero-quote {
+        font-size: 0.9rem;
+        padding: 0 5px;
+    }
+    
+    .hero-quote br {
+        display: none;
+    }
+    
+    .hero-moon-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+    
+    .hero-divider {
+        gap: 10px;
+        margin: 10px 0 15px 0;
+    }
+    
+    .scroll-indicator {
+        bottom: 10px;
+    }
+    
+    .scroll-indicator i {
+        font-size: 0.8rem;
+    }
+}

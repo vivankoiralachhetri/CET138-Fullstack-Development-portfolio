@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bootstrap Demo - Moonlit Café</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap%22 rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+<link href="assets/css/responsive.css" rel="stylesheet">
+<link href="assets/css/dark-mode.css" rel="stylesheet">
+<style>
+
+        .component-demo {
+
+            border: 2px dashed var(--color-gold)
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: var(--radius-md);
+            background: rgba(246, 201, 14, 0.03);
+
+        }
+
+        body.dark-mode .component-demo {
+
+            background: rgba(246, 201, 14, 0.05);
+
+        }
+
+        .demo-grid .col {
+
+            padding: 15px;
+
+            background: rgba(246, 201, 14, 0.1);
+
+            border: 1px solid rgba(246, 201, 14, 0.2);
+
+            border-radius: var(--radius-sm);
+
+            text-align: center;
+
+        }
+
+        body.dark-mode .demo-grid .col {
+
+            background: rgba(246, 201, 14, 0.05);
+
+            border-color: rgba(246, 201, 14, 0.1);
+
+        }
+
+        /* Card image height for consistency */
+
+        .card-img-top {
+
+            height: 200px;
+
+            object-fit: cover;
+
+        }
+</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top custom-navbar">
+<div class="container">
+<a class="navbar-brand" href="index.html">
+<i class="fas fa-moon me-2"></i>Moonlit
+</a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarNav">
+<ul class="navbar-nav ms-auto">
+<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+<li class="nav-item"><a class="nav-link" href="html-demo.html">HTML</a></li>
+<li class="nav-item"><a class="nav-link" href="css-demo.html">CSS</a></li>
+<li class="nav-item"><a class="nav-link active" href="bootstrap-demo.html">Bootstrap</a></li>
+<li class="nav-item"><a class="nav-link" href="javascript-demo.html">JavaScript</a></li>
+<li class="nav-item">
+<button class="btn btn-outline-light btn-sm ms-2" id="darkModeToggle">
+<i class="fas fa-moon"></i>
+</button>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+ 
+    <header class="bg-dark text-white py-5 mt-5">
+<div class="container text-center">
+<h1 class="display-4 playfair-font">Bootstrap <span class="text-gold">5</span></h1>
+<p class="lead">Rapid, responsive development with pre-built components</p>
+</div>
+</header>
+ 
+    <main class="container py-5">
+<div class="row">
+<div class="col-lg-10 mx-auto">
+<h2 class="section-title">Bootstrap Components</h2>
+<p>This page demonstrates various Bootstrap 5 components and utilities used throughout Moonlit Café.</p>
+ 
+                <!-- Grid System -->
+<div class="component-demo">
+<h3>Grid System</h3>
+<p>Bootstrap's 12-column responsive grid.</p>
+<div class="demo-grid">
+<div class="row g-3">
+<div class="col-lg-4 col-md-6 col-12">
+<div class="col">col-lg-4 / col-md-6</div>
+</div>
+<div class="col-lg-4 col-md-6 col-12">
+<div class="col">col-lg-4 / col-md-6</div>
+</div>
+<div class="col-lg-4 col-md-12 col-12">
+<div class="col">col-lg-4 / col-md-12</div>
+</div>
+</div>
+<div class="row g-3 mt-2">
+<div class="col-lg-3 col-md-6 col-6">
+<div class="col">col-6 / col-md-6 / col-lg-3</div>
+</div>
+<div class="col-lg-3 col-md-6 col-6">
+<div class="col">col-6 / col-md-6 / col-lg-3</div>
+</div>
+<div class="col-lg-3 col-md-6 col-6">
+<div class="col">col-6 / col-md-6 / col-lg-3</div>
+</div>
+<div class="col-lg-3 col-md-6 col-6">
+<div class="col">col-6 / col-md-6 / col-lg-3</div>
+</div>
+</div>
+</div>
+</div>
+ 
+                <!-- Buttons -->
+<div class="component-demo">
+<h3>Button Styles</h3>
+<div class="d-flex flex-wrap gap-3">
+<button class="btn btn-gold">Gold Button</button>
+<button class="btn btn-outline-gold">Outline Gold</button>
+<button class="btn btn-dark">Dark</button>
+<button class="btn btn-outline-secondary">Outline</button>
+<button class="btn btn-gold btn-sm">Small</button>
+<button class="btn btn-gold btn-lg">Large</button>
+</div>
+</div>
+ 
+                <!-- Cards -->
+<div class="component-demo">
+<h3>Card Component</h3>
+<div class="row g-3">
+<!-- Card 1: Croissant -->
+<div class="col-md-4">
+<div class="card h-100">
+<img src="assets/images/croissant.jpg" 
+
+                                     class="card-img-top" alt="Butter Croissant">
+<div class="card-body">
+<h5 class="card-title">Butter Croissant</h5>
+<p class="card-text text-muted">Flaky, buttery, and perfectly golden.</p>
+<span class="price">£4.50</span>
+<button class="btn btn-gold btn-sm w-100 mt-2">Add to Cart</button>
+</div>
+</div>
+</div>
+ 
+                        <!-- Card 2: Sourdough-->
+<div class="col-md-4">
+<div class="card h-100">
+<img src="assets/images/sourdough.jpg" 
+
+                                     class="card-img-top" alt="Artisan Sourdough">
+<div class="card-header bg-gold text-dark">
+<i class="fas fa-star me-1"></i> Featured
+</div>
+<div class="card-body">
+<h5 class="card-title">Artisan Sourdough</h5>
+<p class="card-text text-muted">Tangy, crusty, naturally leavened.</p>
+<span class="price">£7.00</span>
+</div>
+<div class="card-footer bg-transparent">
+<button class="btn btn-outline-gold btn-sm w-100">View Details</button>
+</div>
+</div>
+</div>
+ 
+                        <!-- Card 3: Vanilla Latte-->
+<div class="col-md-4">
+<div class="card h-100 text-center">
+<img src="assets/images/vanilla-latte.jpg" 
+
+                                     class="card-img-top" alt="Vanilla Latte">
+<div class="card-body">
+<i class="fas fa-mug-saucer fa-2x text-gold mb-2"></i>
+<h5 class="card-title">Vanilla Latte</h5>
+<p class="card-text text-muted">Smooth espresso with vanilla.</p>
+<span class="price">£5.50</span>
+<button class="btn btn-gold btn-sm w-100 mt-2">Add to Cart</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+ 
+                <!-- Carousel-->
+<div class="component-demo">
+<h3>Carousel</h3>
+<div id="demoCarousel" class="carousel slide" data-bs-ride="carousel">
+<div class="carousel-indicators">
+<button type="button" data-bs-target="#demoCarousel" data-bs-slide-to="0" class="active"></button>
+<button type="button" data-bs-target="#demoCarousel" data-bs-slide-to="1"></button>
+<button type="button" data-bs-target="#demoCarousel" data-bs-slide-to="2"></button>
+</div>
+<div class="carousel-inner rounded-3">
+<div class="carousel-item active">
+<img src="assets/images/gallery2.jpg" 
+
+                                     class="d-block w-100" alt="Café interior" style="height: 300px; object-fit: cover;">
+<div class="carousel-caption d-none d-md-block">
+<h5>Our Café</h5>
+<p>A cozy space to relax and enjoy.</p>
+</div>
+</div>
+<div class="carousel-item">
+<img src="assets/images/gallery1.jpg" 
+
+                                     class="d-block w-100" alt="Coffee" style="height: 300px; object-fit: cover;">
+<div class="carousel-caption d-none d-md-block">
+<h5>Perfect Brew</h5>
+<p>Crafted with love and care.</p>
+</div>
+</div>
+<div class="carousel-item">
+<img src="assets/images/gallery3.jpg" 
+
+                                     class="d-block w-100" alt="Bread" style="height: 300px; object-fit: cover;">
+<div class="carousel-caption d-none d-md-block">
+<h5>Fresh Daily</h5>
+<p>Baked fresh every morning.</p>
+</div>
+</div>
+</div>
+<button class="carousel-control-prev" type="button" data-bs-target="#demoCarousel" data-bs-slide="prev">
+<span class="carousel-control-prev-icon"></span>
+</button>
+<button class="carousel-control-next" type="button" data-bs-target="#demoCarousel" data-bs-slide="next">
+<span class="carousel-control-next-icon"></span>
+</button>
+</div>
+</div>
+ 
+                <!-- Offcanvas + Modal -->
+<div class="component-demo">
+<h3>Offcanvas & Modal</h3>
+<div class="d-flex gap-3 flex-wrap">
+<button class="btn btn-gold" data-bs-toggle="offcanvas" data-bs-target="#demoOffcanvas">
+<i class="fas fa-sliders-h me-2"></i>Open Offcanvas
+</button>
+<button class="btn btn-outline-gold" data-bs-toggle="modal" data-bs-target="#demoModal">
+<i class="fas fa-info-circle me-2"></i>Open Modal
+</button>
+</div>
+</div>
+ 
+                <!-- Utilities -->
+<div class="component-demo">
+<h3>Bootstrap Utilities</h3>
+<div class="d-flex flex-wrap gap-3 align-items-center">
+<div class="p-3 bg-light rounded-3 shadow-sm">Shadow</div>
+<div class="p-3 bg-gold text-dark rounded-3 shadow-lg">Large Shadow</div>
+<div class="p-3 border border-2 border-gold rounded-4">Border + Radius</div>
+<div class="p-3 bg-dark text-white rounded-circle d-flex align-items-center justify-content-center" 
+
+                             style="width: 60px; height: 60px;">Circle</div>
+<div class="p-3 bg-success bg-opacity-25 text-success">Opacity</div>
+<div class="d-flex gap-2">
+<span class="badge bg-gold text-dark">Gold Badge</span>
+<span class="badge bg-primary rounded-pill">Pill</span>
+<span class="badge bg-success">Success</span>
+</div>
+</div>
+</div>
+ 
+                <!-- Features List -->
+<div class="alert alert-info mt-4">
+<h5><i class="fas fa-info-circle me-2"></i>Bootstrap Features Demonstrated</h5>
+<ul class="mb-0">
+<li><strong>Grid System:</strong> Responsive 12-column grid with <code>row</code> and <code>col-*</code> classes</li>
+<li><strong>Components:</strong> Navbar, Cards, Carousel, Offcanvas, Modal, Alerts, Badges</li>
+<li><strong>Utilities:</strong> Spacing, display, flex, borders, shadows, opacity, text</li>
+<li><strong>Buttons:</strong> Multiple styles, sizes, and states</li>
+<li><strong>Typography:</strong> Consistent typeface and hierarchy</li>
+<li><strong>Customization:</strong> Overridden variables for brand colors</li>
+</ul>
+</div>
+</div>
+</div>
+</main>
+ 
+    <!-- Offcanvas -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="demoOffcanvas">
+<div class="offcanvas-header">
+<h5 class="offcanvas-title"><i class="fas fa-sliders-h me-2"></i>Demo Offcanvas</h5>
+<button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+</div>
+<div class="offcanvas-body">
+<p>This is a Bootstrap Offcanvas component. It slides in from the side.</p>
+<p>Used in the main site for the shopping cart.</p>
+<button class="btn btn-gold" data-bs-dismiss="offcanvas">Close</button>
+</div>
+</div>
+ 
+    <!-- Modal -->
+<div class="modal fade" id="demoModal" tabindex="-1">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title"><i class="fas fa-info-circle text-gold me-2"></i>Demo Modal</h5>
+<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+</div>
+<div class="modal-body">
+<p>This is a Bootstrap Modal component. It's used for order confirmations in the main site.</p>
+</div>
+<div class="modal-footer">
+<button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+<button class="btn btn-gold">OK</button>
+</div>
+</div>
+</div>
+</div>
+ 
+    <footer class="py-4">
+<div class="container text-center">
+<p class="mb-0">&copy; 2026 Moonlit Café & Bakery. <span class="text-gold">Made with <i class="fas fa-heart"></i></span></p>
+</div>
+</footer>
+ 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
+ 

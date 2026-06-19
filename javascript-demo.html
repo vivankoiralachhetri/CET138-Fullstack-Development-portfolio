@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Demo - Moonlit Café</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+    <link href="assets/css/dark-mode.css" rel="stylesheet">
+    <style>
+        .js-demo-box {
+            background: rgba(246, 201, 14, 0.05);
+            border: 2px dashed var(--color-gold);
+            border-radius: var(--radius-md);
+            padding: 25px;
+            margin: 20px 0;
+        }
+        body.dark-mode .js-demo-box {
+            background: rgba(246, 201, 14, 0.03);
+        }
+        .color-box {
+            width: 100px;
+            height: 100px;
+            border-radius: var(--radius-sm);
+            transition: all 0.3s ease;
+            margin: 10px auto;
+        }
+        .counter-display {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--color-gold);
+        }
+        .task-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+        .task-item:hover {
+            background: rgba(246, 201, 14, 0.1);
+        }
+        .task-item.completed {
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+        .task-item .task-check {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--color-gold);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            flex-shrink: 0;
+        }
+        .task-item.completed .task-check {
+            background: var(--color-gold);
+            position: relative;
+        }
+        .task-item.completed .task-check::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--color-dark);
+            font-size: 12px;
+            font-weight: 700;
+        }
+        #apiResponse {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .api-status-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .api-status-dot.online {
+            background: #2ecc71;
+        }
+        .api-status-dot.offline {
+            background: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top custom-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-moon me-2"></i>Moonlit
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="html-demo.html">HTML</a></li>
+                    <li class="nav-item"><a class="nav-link" href="css-demo.html">CSS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="bootstrap-demo.html">Bootstrap</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="javascript-demo.html">JavaScript</a></li>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-light btn-sm ms-2" id="darkModeToggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-dark text-white py-5 mt-5">
+        <div class="container text-center">
+            <h1 class="display-4 playfair-font">JavaScript <span class="text-gold">Interactivity</span></h1>
+            <p class="lead">Adding dynamic features to enhance user experience</p>
+        </div>
+    </header>
+
+    <main class="container py-5">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <h2 class="section-title">Interactive Demos</h2>
+                <p>This page demonstrates JavaScript features used throughout Moonlit Café.</p>
+
+                <!-- ========================================== -->
+                <!-- 1. COUNTER DEMO                           -->
+                <!-- ========================================== -->
+                <div class="js-demo-box">
+                    <h3><i class="fas fa-calculator me-2 text-gold"></i>Counter</h3>
+                    <p>Simple counter with increment, decrement, and reset.</p>
+                    <div class="text-center">
+                        <div class="counter-display" id="counterDisplay">0</div>
+                        <div class="d-flex justify-content-center gap-2 flex-wrap">
+                            <button class="btn btn-gold" id="counterDec">-</button>
+                            <button class="btn btn-outline-gold" id="counterReset">Reset</button>
+                            <button class="btn btn-gold" id="counterInc">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========================================== -->
+                <!-- 2. COLOR CHANGER DEMO                    -->
+                <!-- ========================================== -->
+                <div class="js-demo-box">
+                    <h3><i class="fas fa-palette me-2 text-gold"></i>Color Changer</h3>
+                    <p>Click the color buttons to change the box color.</p>
+                    <div class="text-center">
+                        <div class="color-box" id="colorBox" style="background: var(--color-gold);"></div>
+                        <div class="d-flex justify-content-center gap-2 flex-wrap">
+                            <button class="btn btn-sm btn-danger" data-color="#e74c3c">Red</button>
+                            <button class="btn btn-sm btn-primary" data-color="#3498db">Blue</button>
+                            <button class="btn btn-sm btn-success" data-color="#2ecc71">Green</button>
+                            <button class="btn btn-sm btn-warning" data-color="#f1c40f">Yellow</button>
+                            <button class="btn btn-sm btn-dark" data-color="#2c3e50">Dark</button>
+                            <button class="btn btn-sm btn-outline-secondary" data-color="#f8f9fa">Reset</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========================================== -->
+                <!-- 3. TODO LIST DEMO                        -->
+                <!-- ========================================== -->
+                <div class="js-demo-box">
+                    <h3><i class="fas fa-tasks me-2 text-gold"></i>Todo List</h3>
+                    <p>Add tasks and mark them as complete.</p>
+                    <div class="d-flex gap-2 mb-3">
+                        <input type="text" class="form-control" id="todoInput" placeholder="Enter a task...">
+                        <button class="btn btn-gold" id="todoAdd">Add</button>
+                    </div>
+                    <div id="todoList" class="d-flex flex-column gap-2">
+                        <div class="task-item">
+                            <div class="task-check"></div>
+                            <span>Example task</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========================================== -->
+                <!-- 4. API SIMULATION DEMO (NEW)              -->
+                <!-- ========================================== -->
+                <div class="js-demo-box">
+                    <h3><i class="fas fa-server me-2 text-gold"></i>Full Stack API Simulation</h3>
+                    <p>
+                        <span class="api-status-dot online"></span>
+                        <span class="text-success">API Online</span>
+                        <span class="text-muted ms-3">Simulates RESTful CRUD operations for Moonlit Café orders</span>
+                    </p>
+                    
+                    <div class="d-flex flex-wrap gap-2 mb-3">
+                        <button class="btn btn-gold btn-sm" id="apiTestBtn">
+                            <i class="fas fa-play me-1"></i>Run Full API Test
+                        </button>
+                        <button class="btn btn-outline-gold btn-sm" id="apiOrdersBtn">
+                            <i class="fas fa-list me-1"></i>View All Orders
+                        </button>
+                        <button class="btn btn-outline-gold btn-sm" id="apiProductsBtn">
+                            <i class="fas fa-utensils me-1"></i>View Menu
+                        </button>
+                        <button class="btn btn-outline-gold btn-sm" id="apiStatsBtn">
+                            <i class="fas fa-chart-bar me-1"></i>View Stats
+                        </button>
+                        <button class="btn btn-outline-gold btn-sm" id="apiCreateOrderBtn">
+                            <i class="fas fa-plus me-1"></i>Create Sample Order
+                        </button>
+                    </div>
+                    
+                    <div id="apiResult" class="mt-3 p-3 bg-dark text-white rounded-3 d-none">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <small class="text-muted">
+                                <i class="fas fa-clock me-1"></i>
+                                <span id="apiTimestamp">Response</span>
+                            </small>
+                            <button class="btn btn-sm btn-outline-secondary" id="apiClearBtn">
+                                <i class="fas fa-times"></i> Clear
+                            </button>
+                        </div>
+                        <pre id="apiResponse" style="margin: 0; color: #55efc4; font-size: 0.85rem; white-space: pre-wrap;"></pre>
+                    </div>
+                    
+                    <div class="mt-3">
+                        <small class="text-muted">
+                            <i class="fas fa-info-circle me-1"></i>
+                            Open your browser console (F12) to see detailed logs. 
+                            Type <code class="text-dark">testAPI()</code> to run tests manually.
+                        </small>
+                    </div>
+                </div>
+
+                <!-- ========================================== -->
+                <!-- 5. FEATURES SUMMARY                       -->
+                <!-- ========================================== -->
+                <div class="alert alert-info mt-4">
+                    <h5><i class="fas fa-info-circle me-2"></i>JavaScript Features Demonstrated</h5>
+                    <ul class="mb-0">
+                        <li><strong>DOM Manipulation:</strong> Creating, updating, and removing elements</li>
+                        <li><strong>Event Handling:</strong> Click, input, and key events</li>
+                        <li><strong>State Management:</strong> Tracking and updating application state</li>
+                        <li><strong>Local Storage:</strong> Persisting data across sessions (shopping cart)</li>
+                        <li><strong>API Simulation:</strong> Full RESTful CRUD operations with async/await</li>
+                        <li><strong>Form Validation:</strong> Real-time validation with visual feedback</li>
+                        <li><strong>Dark Mode:</strong> Toggle with preference persistence</li>
+                        <li><strong>Array Methods:</strong> filter, map, reduce, forEach, find</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-4">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2026 Moonlit Café & Bakery. <span class="text-gold">Made with <i class="fas fa-heart"></i></span></p>
+        </div>
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- SCRIPTS                                    -->
+    <!-- ========================================== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/api-simulation.js"></script>
+    
+    <script>
+    /**
+     * ==========================================
+     * JAVASCRIPT DEMO - Interactive Features
+     * ==========================================
+     */
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        // ==========================================
+        // 1. COUNTER
+        // ==========================================
+        let counter = 0;
+        const counterDisplay = document.getElementById('counterDisplay');
+        const counterInc = document.getElementById('counterInc');
+        const counterDec = document.getElementById('counterDec');
+        const counterReset = document.getElementById('counterReset');
+        
+        function updateCounter() {
+            counterDisplay.textContent = counter;
+            counterDisplay.style.color = counter > 0 ? '#2ecc71' : counter < 0 ? '#e74c3c' : 'var(--color-gold)';
+        }
+        
+        if (counterInc) counterInc.addEventListener('click', () => { counter++; updateCounter(); });
+        if (counterDec) counterDec.addEventListener('click', () => { counter--; updateCounter(); });
+        if (counterReset) counterReset.addEventListener('click', () => { counter = 0; updateCounter(); });
+        
+        // ==========================================
+        // 2. COLOR CHANGER
+        // ==========================================
+        const colorBox = document.getElementById('colorBox');
+        document.querySelectorAll('[data-color]').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const color = this.dataset.color;
+                colorBox.style.background = color;
+            });
+        });
+        
+        // ==========================================
+        // 3. TODO LIST
+        // ==========================================
+        const todoInput = document.getElementById('todoInput');
+        const todoAdd = document.getElementById('todoAdd');
+        const todoList = document.getElementById('todoList');
+        
+        function addTodo(text) {
+            if (!text.trim()) return;
+            
+            const div = document.createElement('div');
+            div.className = 'task-item';
+            div.innerHTML = `
+                <div class="task-check" onclick="toggleTodo(this)"></div>
+                <span>${text.trim()}</span>
+            `;
+            
+            todoList.appendChild(div);
+            todoInput.value = '';
+            todoInput.focus();
+        }
+        
+        window.toggleTodo = function(element) {
+            const item = element.closest('.task-item');
+            item.classList.toggle('completed');
+        };
+        
+        if (todoAdd) {
+            todoAdd.addEventListener('click', () => addTodo(todoInput.value));
+            todoInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') addTodo(todoInput.value);
+            });
+        }
+        
+        // ==========================================
+        // 4. API SIMULATION
+        // ==========================================
+        const apiResult = document.getElementById('apiResult');
+        const apiResponse = document.getElementById('apiResponse');
+        const apiTimestamp = document.getElementById('apiTimestamp');
+        const apiClearBtn = document.getElementById('apiClearBtn');
+        
+        function showAPIResult(data) {
+            apiResponse.textContent = JSON.stringify(data, null, 2);
+            apiTimestamp.textContent = new Date().toLocaleString();
+            apiResult.classList.remove('d-none');
+            apiResult.style.animation = 'fadeIn 0.5s ease';
+        }
+        
+        if (apiClearBtn) {
+            apiClearBtn.addEventListener('click', () => {
+                apiResult.classList.add('d-none');
+                apiResponse.textContent = '';
+            });
+        }
+        
+        // API Test Button
+        const apiTestBtn = document.getElementById('apiTestBtn');
+        if (apiTestBtn) {
+            apiTestBtn.addEventListener('click', async function() {
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Running...';
+                this.disabled = true;
+                
+                try {
+                    const result = await testAPI();
+                    showAPIResult(result);
+                } catch (error) {
+                    showAPIResult({ error: 'API Error: ' + error.message });
+                } finally {
+                    this.innerHTML = originalText;
+                    this.disabled = false;
+                }
+            });
+        }
+        
+        // View Orders Button
+        const apiOrdersBtn = document.getElementById('apiOrdersBtn');
+        if (apiOrdersBtn) {
+            apiOrdersBtn.addEventListener('click', async function() {
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Loading...';
+                this.disabled = true;
+                
+                try {
+                    const result = await api.getOrders();
+                    showAPIResult(result);
+                } catch (error) {
+                    showAPIResult({ error: 'Failed to fetch orders: ' + error.message });
+                } finally {
+                    this.innerHTML = originalText;
+                    this.disabled = false;
+                }
+            });
+        }
+        
+        // View Products Button
+        const apiProductsBtn = document.getElementById('apiProductsBtn');
+        if (apiProductsBtn) {
+            apiProductsBtn.addEventListener('click', async function() {
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Loading...';
+                this.disabled = true;
+                
+                try {
+                    const result = await api.getProducts();
+                    showAPIResult(result);
+                } catch (error) {
+                    showAPIResult({ error: 'Failed to fetch products: ' + error.message });
+                } finally {
+                    this.innerHTML = originalText;
+                    this.disabled = false;
+                }
+            });
+        }
+        
+        // View Stats Button
+        const apiStatsBtn = document.getElementById('apiStatsBtn');
+        if (apiStatsBtn) {
+            apiStatsBtn.addEventListener('click', async function() {
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Loading...';
+                this.disabled = true;
+                
+                try {
+                    const result = await api.getOrderStats();
+                    showAPIResult(result);
+                } catch (error) {
+                    showAPIResult({ error: 'Failed to fetch stats: ' + error.message });
+                } finally {
+                    this.innerHTML = originalText;
+                    this.disabled = false;
+                }
+            });
+        }
+        
+        // Create Sample Order Button
+        const apiCreateOrderBtn = document.getElementById('apiCreateOrderBtn');
+        if (apiCreateOrderBtn) {
+            apiCreateOrderBtn.addEventListener('click', async function() {
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Creating...';
+                this.disabled = true;
+                
+                try {
+                    const sampleOrder = {
+                        items: [
+                            { name: 'Butter Croissant', quantity: 2, price: 4.50 },
+                            { name: 'Vanilla Latte', quantity: 1, price: 5.50 }
+                        ],
+                        customer: {
+                            name: 'Demo Customer',
+                            email: 'demo@moonlit.com'
+                        }
+                    };
+                    const result = await api.createOrder(sampleOrder);
+                    showAPIResult(result);
+                    if (result.success) {
+                        showNotification('Sample order created! 🎉');
+                    }
+                } catch (error) {
+                    showAPIResult({ error: 'Failed to create order: ' + error.message });
+                } finally {
+                    this.innerHTML = originalText;
+                    this.disabled = false;
+                }
+            });
+        }
+    });
+    </script>
+</body>
+</html>

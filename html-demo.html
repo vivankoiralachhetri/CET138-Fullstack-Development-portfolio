@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Demo - Moonlit Café</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap%22 rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+    <link href="assets/css/dark-mode.css" rel="stylesheet">
+    <style>
+        .demo-section {
+            border-left: 4px solid var(--color-gold);
+            padding-left: 20px;
+            margin: 2rem 0;
+        }
+        .code-block {
+            background: #1a1a2e;
+            color: #e8e8e8;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        .code-block .tag { color: #ff6b6b; }
+        .code-block .attr { color: #74b9ff; }
+        .code-block .value { color: #fdcb6e; }
+        .code-block .comment { color: #636e72; font-style: italic; }
+        .code-block .string { color: #55efc4; }
+        .semantic-demo {
+            border: 2px dashed var(--color-gold);
+            padding: 20px;
+            border-radius: var(--radius-md);
+            margin: 20px 0;
+        }
+        .semantic-demo header {
+            border-bottom: 2px solid var(--color-gold);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        .semantic-demo nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .semantic-demo nav ul li a {
+            color: var(--color-gold);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .semantic-demo article {
+            padding: 15px 0;
+        }
+        .semantic-demo section {
+            margin-bottom: 25px;
+        }
+        .semantic-demo aside {
+            background: rgba(246, 201, 14, 0.1);
+            padding: 15px 20px;
+            border-radius: var(--radius-sm);
+            border-left: 4px solid var(--color-gold);
+        }
+        .semantic-demo footer {
+            background: transparent !important;
+            padding: 15px 0 !important;
+            color: var(--color-text) !important;
+            border-top: 1px solid #eee;
+        }
+        body.dark-mode .semantic-demo footer {
+            border-top-color: rgba(255,255,255,0.1);
+        }
+        body.dark-mode .semantic-demo aside {
+            background: rgba(246, 201, 14, 0.05);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top custom-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-moon me-2"></i>Moonlit
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="html-demo.html">HTML</a></li>
+                    <li class="nav-item"><a class="nav-link" href="css-demo.html">CSS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="bootstrap-demo.html">Bootstrap</a></li>
+                    <li class="nav-item"><a class="nav-link" href="javascript-demo.html">JavaScript</a></li>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-light btn-sm ms-2" id="darkModeToggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+ 
+    <header class="bg-dark text-white py-5 mt-5">
+        <div class="container text-center">
+            <h1 class="display-4 playfair-font">HTML5 <span class="text-gold">Structure</span></h1>
+            <p class="lead">The foundation of every web page</p>
+        </div>
+    </header>
+ 
+    <main class="container py-5">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <h2 class="section-title">Semantic HTML in Action</h2>
+                <p>This page demonstrates proper semantic HTML5 structure, which improves accessibility, SEO, and code maintainability.</p>
+ 
+                <!-- Semantic HTML Demo -->
+                <div class="semantic-demo">
+                    <header>
+                        <h1>Our Coffee Story</h1>
+                        <p class="text-muted">A journey from bean to cup</p>
+                    </header>
+ 
+                    <nav aria-label="Story navigation">
+                        <ul>
+                            <li><a href="#origins">Origins</a></li>
+                            <li><a href="#process">Process</a></li>
+                            <li><a href="#team">Team</a></li>
+                            <li><a href="#values">Values</a></li>
+                        </ul>
+                    </nav>
+ 
+                    <article>
+                        <section id="origins">
+                            <h2>Our Origins</h2>
+                            <p>Founded in 2023, Moonlit Café began as a small passion project. We believed that great coffee and pastries could bring people together.</p>
+                            <figure class="my-3">
+                                <img src="assets/images/about-cafe.jpg"
+                                     alt="Our first café location" class="img-fluid rounded-3">
+                                <figcaption class="text-muted small mt-2">Our first location in the heart of the city</figcaption>
+                            </figure>
+                        </section>
+ 
+                        <section id="process">
+                            <h2>Our Process</h2>
+                            <p>We're committed to quality at every step:</p>
+                            <ol>
+                                <li><strong>Sourcing:</strong> Direct relationships with farmers</li>
+                                <li><strong>Roasting:</strong> Small-batch for consistency</li>
+                                <li><strong>Brewing:</strong> Expertly crafted by our baristas</li>
+                                <li><strong>Serving:</strong> With love and care</li>
+                            </ol>
+                        </section>
+ 
+                        <section id="team">
+                            <h2>Meet Our Team</h2>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <h3>Sarah - Head Barista</h3>
+                                    <p>10 years of experience, latte art champion.</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h3>James - Head Baker</h3>
+                                    <p>Master of sourdough and pastry.</p>
+                                </div>
+                            </div>
+                        </section>
+ 
+                        <section id="values">
+                            <h2>Our Values</h2>
+                            <ul>
+                                <li>🌱 Sustainability - We use compostable packaging</li>
+                                <li>🤝 Community - We support local causes</li>
+                                <li>☕ Quality - We never compromise on taste</li>
+                                <li>❤️ Passion - We love what we do</li>
+                            </ul>
+                        </section>
+                    </article>
+ 
+                    <aside>
+                        <h4>Did You Know?</h4>
+                        <p>We compost all our coffee grounds and donate them to local community gardens.</p>
+                    </aside>
+ 
+                    <footer>
+                        <p><small>Last updated: June 2026 | <i class="fas fa-moon text-gold"></i> Moonlit Café</small></p>
+                    </footer>
+                </div>
+ 
+                <!-- Code Example -->
+                <div class="demo-section mt-5">
+                    <h3>Code Example: Semantic HTML</h3>
+                    <div class="code-block">
+                        <span class="comment">&lt;!-- Semantic HTML5 Structure --&gt;</span><br>
+                        <span class="tag">&lt;article&gt;</span><br>
+                        &nbsp;&nbsp;<span class="tag">&lt;header&gt;</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;h1&gt;</span>Our Coffee Story<span class="tag">&lt;/h1&gt;</span><br>
+                        &nbsp;&nbsp;<span class="tag">&lt;/header&gt;</span><br>
+                        &nbsp;&nbsp;<span class="tag">&lt;nav</span> <span class="attr">aria-label</span>=<span class="value">"Story navigation"</span><span class="tag">&gt;</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;ul&gt;</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;li&gt;&lt;a</span> <span class="attr">href</span>=<span class="value">"#origins"</span><span class="tag">&gt;</span>Origins<span class="tag">&lt;/a&gt;&lt;/li&gt;</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/ul&gt;</span><br>
+                        &nbsp;&nbsp;<span class="tag">&lt;/nav&gt;</span><br>
+                        &nbsp;&nbsp;<span class="tag">&lt;section</span> <span class="attr">id</span>=<span class="value">"origins"</span><span class="tag">&gt;</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;h2&gt;</span>Our Origins<span class="tag">&lt;/h2&gt;</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;p&gt;</span>...content...<span class="tag">&lt;/p&gt;</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;figure&gt;</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="value">"..."</span> <span class="attr">alt</span>=<span class="value">"..."</span><span class="tag">&gt;</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;figcaption&gt;</span>...<span class="tag">&lt;/figcaption&gt;</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/figure&gt;</span><br>
+                        &nbsp;&nbsp;<span class="tag">&lt;/section&gt;</span><br>
+                        &nbsp;&nbsp;<span class="tag">&lt;aside&gt;</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;h4&gt;</span>Did You Know?<span class="tag">&lt;/h4&gt;</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;p&gt;</span>...<span class="tag">&lt;/p&gt;</span><br>
+                        &nbsp;&nbsp;<span class="tag">&lt;/aside&gt;</span><br>
+                        &nbsp;&nbsp;<span class="tag">&lt;footer&gt;</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;p&gt;</span>...<span class="tag">&lt;/p&gt;</span><br>
+                        &nbsp;&nbsp;<span class="tag">&lt;/footer&gt;</span><br>
+                        <span class="tag">&lt;/article&gt;</span>
+                    </div>
+                </div>
+ 
+                <!-- Features List -->
+                <div class="alert alert-info mt-4">
+                    <h5><i class="fas fa-info-circle me-2"></i>HTML Features Demonstrated</h5>
+                    <ul class="mb-0">
+                        <li><strong>Semantic Tags:</strong> <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;aside&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;figure&gt;</code>, <code>&lt;figcaption&gt;</code></li>
+                        <li><strong>Accessibility:</strong> <code>aria-label</code>, proper heading hierarchy (h1-h3), <code>alt</code> text for images</li>
+                        <li><strong>Lists:</strong> Ordered lists <code>&lt;ol&gt;</code>, unordered lists <code>&lt;ul&gt;</code></li>
+                        <li><strong>Links:</strong> Internal navigation with <code>&lt;a&gt;</code> tags</li>
+                        <li><strong>Forms:</strong> Used in contact section on main page with validation</li>
+                        <li><strong>Tables:</strong> Used in menu section (if needed)</li>
+                        <li><strong>HTML5 Doctype:</strong> <code>&lt;!DOCTYPE html&gt;</code></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+ 
+    <footer class="py-4">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2026 Moonlit Café & Bakery. <span class="text-gold">Made with <i class="fas fa-heart"></i></span></p>
+        </div>
+    </footer>
+ 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
+ 

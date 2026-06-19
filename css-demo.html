@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Demo - Moonlit Café</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+    <link href="assets/css/dark-mode.css" rel="stylesheet">
+    <style>
+        .css-demo-section {
+            margin: 30px 0;
+            padding: 25px;
+            border-radius: var(--radius-md);
+            background: rgba(246, 201, 14, 0.03);
+            border: 2px dashed var(--color-gold);
+        }
+        body.dark-mode .css-demo-section {
+            background: rgba(246, 201, 14, 0.03);
+        }
+        
+        /* ANIMATION DEMO */
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        .pulse-animation {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        .shimmer-text {
+            background: linear-gradient(90deg, var(--color-gold), var(--color-gold-light), var(--color-gold));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s linear infinite;
+            display: inline-block;
+        }
+        
+        /* 3D FLIP CARD */
+        .flip-card {
+            perspective: 1000px;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+        }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .flip-card-front {
+            background: var(--gradient-gold);
+            color: var(--color-dark);
+        }
+        .flip-card-back {
+            background: var(--color-dark);
+            color: white;
+            transform: rotateY(180deg);
+        }
+        
+        /* GLASSMORPHISM - ENHANCED */
+        .glass-demo-wrapper {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            padding: 60px 20px;
+            border-radius: var(--radius-md);
+            position: relative;
+            overflow: hidden;
+            min-height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .glass-demo-wrapper .glass-bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            pointer-events: none;
+        }
+        .glass-demo-wrapper .glass-bubble-1 {
+            width: 120px;
+            height: 120px;
+            top: -30px;
+            right: -20px;
+        }
+        .glass-demo-wrapper .glass-bubble-2 {
+            width: 80px;
+            height: 80px;
+            bottom: -10px;
+            left: -10px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: var(--radius-md);
+            padding: 40px 35px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+            max-width: 400px;
+            width: 100%;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.18);
+        }
+        body.dark-mode .glass-demo-wrapper {
+            background: linear-gradient(135deg, #0d0d1a 0%, #1a1a2e 50%, #2d2d44 100%);
+        }
+        body.dark-mode .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        body.dark-mode .glass-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        /* GRID DEMO */
+        .grid-demo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+        .grid-demo .grid-item {
+            padding: 20px;
+            text-align: center;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            transition: var(--transition-smooth);
+        }
+        .grid-demo .grid-item:hover {
+            transform: scale(1.05);
+        }
+        
+        /* FLEX DEMO */
+        .flex-demo {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+        .flex-demo .flex-item {
+            padding: 20px 30px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            transition: var(--transition-smooth);
+            flex: 1;
+            min-width: 100px;
+            text-align: center;
+        }
+        .flex-demo .flex-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        /* TRANSITION DEMO */
+        .transition-box {
+            width: 150px;
+            height: 150px;
+            background: var(--gradient-gold);
+            border-radius: var(--radius-sm);
+            margin: 0 auto;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-dark);
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .transition-box:hover {
+            transform: rotate(15deg) scale(1.1);
+            box-shadow: 0 15px 40px rgba(246, 201, 14, 0.3);
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top custom-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-moon me-2"></i>Moonlit
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="html-demo.html">HTML</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="css-demo.html">CSS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="bootstrap-demo.html">Bootstrap</a></li>
+                    <li class="nav-item"><a class="nav-link" href="javascript-demo.html">JavaScript</a></li>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-light btn-sm ms-2" id="darkModeToggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-dark text-white py-5 mt-5">
+        <div class="container text-center">
+            <h1 class="display-4 playfair-font">CSS <span class="text-gold">Styling</span></h1>
+            <p class="lead">Bringing beauty and style to our website</p>
+        </div>
+    </header>
+
+    <main class="container py-5">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <h2 class="section-title">CSS Techniques</h2>
+                <p>This page demonstrates various CSS techniques used throughout Moonlit Café.</p>
+
+                <!-- Animations -->
+                <div class="css-demo-section">
+                    <h3><i class="fas fa-play-circle me-2 text-gold"></i>Animations</h3>
+                    <div class="row g-4 text-center">
+                        <div class="col-md-4">
+                            <div class="p-4 bg-gold bg-opacity-10 rounded-3 float-animation">
+                                <i class="fas fa-arrow-up fa-2x text-gold"></i>
+                                <p class="mt-2 mb-0">Float Animation</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-4 bg-gold bg-opacity-10 rounded-3 pulse-animation">
+                                <i class="fas fa-heart fa-2x text-gold"></i>
+                                <p class="mt-2 mb-0">Pulse Animation</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-4 bg-gold bg-opacity-10 rounded-3">
+                                <span class="shimmer-text fs-4">✨ Shimmer Text</span>
+                                <p class="mt-2 mb-0">Gradient Shimmer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3D Flip Card -->
+                <div class="css-demo-section">
+                    <h3><i class="fas fa-cube me-2 text-gold"></i>3D Transform</h3>
+                    <p>Hover the card to see the 3D flip effect.</p>
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <i class="fas fa-mug-saucer fa-3x mb-2"></i>
+                                <strong>Moonlit</strong>
+                            </div>
+                            <div class="flip-card-back">
+                                <i class="fas fa-moon fa-3x mb-2"></i>
+                                <small>✦ Made with love ✦</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Glassmorphism - ENHANCED -->
+                <div class="css-demo-section">
+                    <h3><i class="fas fa-glass-whiskey me-2 text-gold"></i>Glassmorphism</h3>
+                    <p>A modern UI effect with backdrop blur and transparency.</p>
+                    <div class="glass-demo-wrapper">
+                        <div class="glass-bubble glass-bubble-1"></div>
+                        <div class="glass-bubble glass-bubble-2"></div>
+                        <div class="glass-card text-center">
+                            <i class="fas fa-moon fa-3x text-gold mb-3"></i>
+                            <h4 class="text-white">Glass Effect</h4>
+                            <p class="text-white-50 mb-0">Backdrop blur with semi-transparent background.</p>
+                            <div class="mt-3">
+                                <span class="badge bg-light text-dark me-1">backdrop-filter: blur(20px)</span>
+                                <span class="badge bg-light text-dark">rgba(255, 255, 255, 0.15)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CSS Grid -->
+                <div class="css-demo-section">
+                    <h3><i class="fas fa-th me-2 text-gold"></i>CSS Grid</h3>
+                    <div class="grid-demo">
+                        <div class="grid-item" style="background: #e74c3c; color: white;">1</div>
+                        <div class="grid-item" style="background: #3498db; color: white;">2</div>
+                        <div class="grid-item" style="background: #2ecc71; color: white;">3</div>
+                        <div class="grid-item" style="background: #f39c12; color: white;">4</div>
+                        <div class="grid-item" style="background: #9b59b6; color: white;">5</div>
+                        <div class="grid-item" style="background: #1abc9c; color: white;">6</div>
+                    </div>
+                    <p class="text-muted small mt-2"><code>grid-template-columns: repeat(auto-fit, minmax(150px, 1fr))</code></p>
+                </div>
+
+                <!-- Flexbox -->
+                <div class="css-demo-section">
+                    <h3><i class="fas fa-arrows-h me-2 text-gold"></i>Flexbox</h3>
+                    <div class="flex-demo">
+                        <div class="flex-item" style="background: #e74c3c; color: white;">Flex 1</div>
+                        <div class="flex-item" style="background: #3498db; color: white;">Flex 2</div>
+                        <div class="flex-item" style="background: #2ecc71; color: white;">Flex 3</div>
+                        <div class="flex-item" style="background: #f39c12; color: white;">Flex 4</div>
+                    </div>
+                    <p class="text-muted small mt-2"><code>display: flex; flex-wrap: wrap; justify-content: center;</code></p>
+                </div>
+
+                <!-- Transitions -->
+                <div class="css-demo-section">
+                    <h3><i class="fas fa-exchange-alt me-2 text-gold"></i>Transitions</h3>
+                    <p>Hover the box to see the transition effect.</p>
+                    <div class="transition-box">
+                        Hover Me!
+                    </div>
+                    <p class="text-muted small mt-2"><code>transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);</code></p>
+                </div>
+
+                <!-- Features List -->
+                <div class="alert alert-info mt-4">
+                    <h5><i class="fas fa-info-circle me-2"></i>CSS Features Demonstrated</h5>
+                    <ul class="mb-0">
+                        <li><strong>CSS Variables:</strong> Custom properties for theming</li>
+                        <li><strong>Animations:</strong> @keyframes for floating, pulse, and shimmer</li>
+                        <li><strong>Transforms:</strong> 3D flip with perspective and rotateY</li>
+                        <li><strong>Glassmorphism:</strong> backdrop-filter with blur</li>
+                        <li><strong>CSS Grid:</strong> Responsive grid with auto-fit</li>
+                        <li><strong>Flexbox:</strong> Flexible layout with wrap and justify</li>
+                        <li><strong>Transitions:</strong> Smooth hover effects</li>
+                        <li><strong>Gradients:</strong> Linear gradients for backgrounds</li>
+                        <li><strong>Media Queries:</strong> Responsive design for all screen sizes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-4">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2026 Moonlit Café & Bakery. <span class="text-gold">Made with <i class="fas fa-heart"></i></span></p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

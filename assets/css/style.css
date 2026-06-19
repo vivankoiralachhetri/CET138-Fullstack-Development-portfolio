@@ -1,0 +1,659 @@
+/* ==========================================
+   MOONLIT CAFÉ - Main Styles
+   Full Stack Development Assignment
+   ========================================== */
+
+/* ==========================================
+   CSS VARIABLES (Custom Properties)
+   ========================================== */
+:root {
+    /* Colors */
+    --color-dark: #1a1a2e;
+    --color-dark-secondary: #2d2d44;
+    --color-gold: #f6c90e;
+    --color-gold-light: #f8d64e;
+    --color-gold-dark: #d4a800;
+    --color-cream: #fef9ef;
+    --color-white: #ffffff;
+    --color-text: #2d3436;
+    --color-text-light: #636e72;
+    --color-muted: #b2bec3;
+    
+    /* Gradients */
+    --gradient-gold: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+    --gradient-dark: linear-gradient(135deg, var(--color-dark), var(--color-dark-secondary));
+    --gradient-hero: linear-gradient(135deg, rgba(26, 26, 46, 0.92), rgba(45, 45, 68, 0.85));
+    
+    /* Typography */
+    --font-playfair: 'Playfair Display', serif;
+    --font-inter: 'Inter', sans-serif;
+    
+    /* Spacing */
+    --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 15px 50px rgba(0, 0, 0, 0.18);
+    --shadow-hover: 0 20px 60px rgba(0, 0, 0, 0.15);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-xl: 32px;
+}
+
+/* ==========================================
+   GLOBAL STYLES
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-inter);
+    color: var(--color-text);
+    background-color: var(--color-cream);
+    padding-top: 76px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-cream);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-gold);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-gold-dark);
+}
+
+/* ==========================================
+   TYPOGRAPHY
+   ========================================== */
+.playfair-font {
+    font-family: var(--font-playfair);
+}
+
+.text-gold {
+    color: var(--color-gold) !important;
+}
+
+.section-title {
+    font-family: var(--font-playfair);
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--gradient-gold);
+    border-radius: 10px;
+}
+
+/* ==========================================
+   NAVIGATION
+   ========================================== */
+.custom-navbar {
+    background: rgba(26, 26, 46, 0.95) !important;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+    padding: 12px 0;
+    transition: var(--transition-smooth);
+}
+
+.custom-navbar .navbar-brand {
+    font-family: var(--font-playfair);
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--color-white) !important;
+}
+
+.custom-navbar .navbar-brand i {
+    color: var(--color-gold);
+}
+
+.custom-navbar .nav-link {
+    color: rgba(255, 255, 255, 0.8) !important;
+    font-weight: 500;
+    transition: var(--transition-smooth);
+    padding: 8px 16px !important;
+}
+
+.custom-navbar .nav-link:hover,
+.custom-navbar .nav-link.active {
+    color: var(--color-gold) !important;
+}
+
+/* ==========================================
+   HERO SECTION - MOONLIT DESIGN
+   ========================================== */
+.hero-section {
+    background: linear-gradient(135deg, #0d0d1a 0%, #1a0e0a 40%, #2d1810 70%, #1a0e0a 100%);
+    background-image: 
+        linear-gradient(135deg, 
+            rgba(13, 13, 26, 0.82) 0%, 
+            rgba(26, 14, 10, 0.75) 40%, 
+            rgba(45, 24, 16, 0.70) 70%, 
+            rgba(13, 13, 26, 0.82) 100%
+        ),
+        url('../images/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    margin-top: -76px;
+    padding-top: 76px;
+}
+
+
+/* Warm Glow Effect */
+.warm-glow {
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 70%;
+    height: 140%;
+    background: radial-gradient(ellipse, rgba(246, 201, 14, 0.06) 0%, rgba(246, 201, 14, 0.02) 40%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+    animation: pulseGlow 8s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+/* Floating Moon Phases */
+.moon-phase {
+    position: absolute;
+    color: rgba(246, 201, 14, 0.08);
+    font-size: 8rem;
+    pointer-events: none;
+    z-index: 1;
+    animation: floatMoon 20s ease-in-out infinite;
+}
+
+.moon-phase-1 {
+    top: 10%;
+    left: 5%;
+    font-size: 10rem;
+    opacity: 0.05;
+    animation-delay: 0s;
+}
+
+.moon-phase-2 {
+    bottom: 15%;
+    right: 8%;
+    font-size: 6rem;
+    opacity: 0.06;
+    animation-delay: -7s;
+}
+
+.moon-phase-3 {
+    top: 50%;
+    left: 50%;
+    font-size: 14rem;
+    opacity: 0.03;
+    animation-delay: -14s;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes floatMoon {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(20px, -30px) rotate(5deg); }
+    50% { transform: translate(-10px, -50px) rotate(-3deg); }
+    75% { transform: translate(15px, -20px) rotate(4deg); }
+}
+
+/* Floating Stars */
+.star {
+    position: absolute;
+    color: rgba(246, 201, 14, 0.15);
+    pointer-events: none;
+    z-index: 1;
+    animation: twinkle 3s ease-in-out infinite;
+}
+
+.star i {
+    font-size: 1.2rem;
+}
+
+.star-1 { top: 8%; left: 15%; animation-delay: 0s; }
+.star-2 { top: 20%; right: 25%; animation-delay: -1s; }
+.star-3 { bottom: 25%; left: 10%; animation-delay: -2s; }
+.star-4 { bottom: 35%; right: 15%; animation-delay: -0.5s; }
+.star-5 { top: 45%; left: 30%; animation-delay: -1.5s; font-size: 0.8rem; }
+.star-6 { bottom: 50%; right: 30%; animation-delay: -2.5s; font-size: 0.6rem; }
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.1; transform: scale(0.8); }
+    50% { opacity: 0.4; transform: scale(1.2); }
+}
+
+/* Hero Moon Icon */
+.hero-moon-icon {
+    background: rgba(246, 201, 14, 0.15);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    color: var(--color-gold);
+    border: 2px solid rgba(246, 201, 14, 0.2);
+    animation: pulseGlow 3s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+/* Hero Quote Wrapper */
+.quote-wrapper {
+    position: relative;
+    padding: 10px 0;
+    margin: 15px 0;
+}
+
+.quote-decoration {
+    position: absolute;
+    color: rgba(246, 201, 14, 0.15);
+    font-size: 2.5rem;
+}
+
+.quote-decoration.quote-left {
+    top: -5px;
+    left: -10px;
+}
+
+.quote-decoration.quote-right {
+    bottom: -5px;
+    right: -10px;
+}
+
+.hero-quote {
+    font-family: var(--font-playfair);
+    color: #fef9ef;
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.6;
+    padding: 0 30px;
+    text-align: center;
+    font-style: italic;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Hero Sub Text */
+.hero-sub-text {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Hero Divider */
+.hero-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0 30px 0;
+    width: 80%;
+}
+
+.hero-divider span {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(246, 201, 14, 0.3), transparent);
+}
+
+.hero-divider i {
+    font-size: 1.2rem;
+    color: var(--color-gold);
+    opacity: 0.6;
+}
+
+/* Moon Ring */
+.moon-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 110%;
+    height: 110%;
+    border: 1px solid rgba(246, 201, 14, 0.06);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: spinRing 30s linear infinite;
+}
+
+@keyframes spinRing {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    z-index: 2;
+    animation: bounceScroll 2s ease-in-out infinite;
+}
+
+.scroll-indicator i {
+    font-size: 1.2rem;
+}
+
+@keyframes bounceScroll {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-8px); }
+}
+
+/* ==========================================
+   BUTTONS
+   ========================================== */
+.btn-gold {
+    background: var(--gradient-gold);
+    color: var(--color-dark);
+    font-weight: 600;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    transition: var(--transition-smooth);
+    box-shadow: 0 4px 20px rgba(246, 201, 14, 0.3);
+}
+
+.btn-gold:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 35px rgba(246, 201, 14, 0.4);
+    color: var(--color-dark);
+}
+
+.btn-gold:active {
+    transform: translateY(-1px);
+}
+
+.btn-outline-gold {
+    color: var(--color-gold);
+    border: 2px solid var(--color-gold);
+    background: transparent;
+    font-weight: 600;
+    padding: 10px 24px;
+    border-radius: 50px;
+    transition: var(--transition-smooth);
+}
+
+.btn-outline-gold:hover {
+    background: var(--gradient-gold);
+    color: var(--color-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(246, 201, 14, 0.3);
+}
+
+.btn-filter {
+    background: transparent;
+    border: 2px solid var(--color-muted);
+    color: var(--color-text);
+    padding: 8px 22px;
+    border-radius: 50px;
+    font-weight: 500;
+    transition: var(--transition-smooth);
+}
+
+.btn-filter:hover {
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+}
+
+.btn-filter.active {
+    background: var(--gradient-gold);
+    border-color: var(--color-gold);
+    color: var(--color-dark);
+    font-weight: 600;
+}
+
+/* ==========================================
+   TECH CARDS
+   ========================================== */
+.tech-card {
+    border: none;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: var(--transition-smooth);
+    background: var(--color-white);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+}
+
+.tech-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-hover);
+}
+
+.tech-card .card-img-wrapper {
+    overflow: hidden;
+    height: 200px;
+}
+
+.tech-card .card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.tech-card:hover .card-img-top {
+    transform: scale(1.05);
+}
+
+.tech-card .card-body {
+    padding: 1.5rem;
+}
+
+.tech-icon {
+    position: absolute;
+    top: -20px;
+    right: 20px;
+    background: var(--color-white);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    box-shadow: var(--shadow-sm);
+}
+
+/* ==========================================
+   MENU CARDS
+   ========================================== */
+.menu-card {
+    border: none;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: var(--transition-smooth);
+    background: var(--color-white);
+    box-shadow: var(--shadow-sm);
+}
+
+.menu-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+}
+
+.menu-card .card-img-top {
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.menu-card:hover .card-img-top {
+    transform: scale(1.05);
+}
+
+.menu-card .card-body {
+    padding: 1.25rem;
+}
+
+.menu-card .price {
+    font-weight: 700;
+    color: var(--color-gold);
+    font-size: 1.2rem;
+}
+
+/* ==========================================
+   STAT BOXES
+   ========================================== */
+.stat-box {
+    background: var(--color-white);
+    border-radius: var(--radius-sm);
+    transition: var(--transition-smooth);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.stat-box:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-sm);
+}
+
+/* ==========================================
+   FORM STYLES
+   ========================================== */
+.form-floating .form-control {
+    border: 2px solid #e9ecef;
+    border-radius: var(--radius-sm);
+    padding: 1rem;
+    height: auto;
+    min-height: 58px;
+    transition: var(--transition-smooth);
+}
+
+.form-floating .form-control:focus {
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 0.25rem rgba(246, 201, 14, 0.2);
+}
+
+.form-floating .form-control.is-valid {
+    border-color: #2ecc71;
+}
+
+.form-floating .form-control.is-invalid {
+    border-color: #e74c3c;
+}
+
+.form-floating .form-control.is-valid:focus {
+    box-shadow: 0 0 0 0.25rem rgba(46, 204, 113, 0.2);
+}
+
+.form-floating .form-control.is-invalid:focus {
+    box-shadow: 0 0 0 0.25rem rgba(231, 76, 60, 0.2);
+}
+
+.form-floating label {
+    padding: 1rem;
+    color: var(--color-text-light);
+}
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+footer {
+    background: var(--color-dark);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+footer .text-gold {
+    color: var(--color-gold) !important;
+}
+
+/* ==========================================
+   KEYFRAME ANIMATIONS
+   ========================================== */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% center;
+    }
+    100% {
+        background-position: 200% center;
+    }
+}
+
+/* Toast Notification Animation */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
